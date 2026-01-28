@@ -28,7 +28,7 @@ jobs:
         run: pip install requests
 
       - name: Run extraction script
-        run: python ./scripts/extraccionDatos.py
+        run: python "${{ github.workspace }}/scripts/extraccionDatos.py"
 
       - name: Commit updated JSON
         run: |
