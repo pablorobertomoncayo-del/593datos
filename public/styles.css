@@ -1,0 +1,162 @@
+/* =========================
+   RESET + BASE
+========================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* CENTRADO VERTICAL REAL */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* =========================
+   CONTENEDOR
+========================= */
+.container {
+  width: 100%;
+  max-width: 420px;
+  padding: 24px 16px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* =========================
+   BLOQUES
+========================= */
+.block {
+  width: 100%;
+  
+  margin-bottom: 24px;
+}
+
+.block:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================
+   NUMEROS GRANDES
+========================= */
+.value {
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Riesgo país */
+.value.green {
+  color: #65D567;
+  font-size: clamp(56px, 12vw, 88px);
+}
+
+/* Oro */
+.value.gold {
+  color: #F5C26B;
+  font-size: clamp(52px, 11vw, 82px);
+}
+
+/* Petróleo */
+.value.blue {
+  color: #7CC3FF;
+  font-size: clamp(52px, 11vw, 82px);
+}
+
+/* =========================
+   TEXTOS
+========================= */
+.label {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 6px;
+
+}
+
+.sub {
+  font-size: 15px;
+  opacity: 0.85;
+  margin-top: 2px;
+
+}
+
+/* =========================
+   DIVISOR
+========================= */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255,255,255,0.15);
+  margin: 20px 0;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.footer {
+  margin-top: 16px;
+ 
+}
+
+.footer .source {
+  font-size: 15px;
+  opacity: 0.85;
+}
+
+.footer .date {
+  font-size: 15px;
+  color: #65D567;
+  margin-top: 4px;
+}
+
+/* =========================
+   INSTAGRAM ICON
+========================= */
+.instagram {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+}
+
+.instagram a {
+  color: #fff;
+  transition: color 0.2s ease;
+}
+
+.instagram a:hover {
+  color: #65D567;
+}
+
+/* =========================
+   MOBILE AJUSTE EXTRA
+========================= */
+@media (max-height: 700px) {
+  .block {
+    margin-bottom: 18px;
+  }
+
+  .divider {
+    margin: 16px 0;
+  }
+
+  .label {
+    font-size: 18px;
+  }
+
+  .sub {
+    font-size: 14px;
+  }
+}
