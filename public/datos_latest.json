@@ -1,7 +1,7 @@
 {
   "riesgo_pais": {
     "latest": {
-      "valor": 413,
+      "valor": 450,
       "fecha_iso": "2026-01-27",
       "fecha_display": "27 / 01 / 2026"
     },
@@ -69,4 +69,5 @@
   },
   "source": "https://contenido.bce.fin.ec/documentos/informacioneconomica/indicadores/general/datos_formulario.json",
   "generated_at_utc": "2026-01-28T15:49:03Z"
+
 }
