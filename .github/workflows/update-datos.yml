@@ -14,6 +14,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Show repo files
+        run: ls -R
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
@@ -22,7 +25,7 @@ jobs:
         run: pip install requests
 
       - name: Run extraction script
-        run: python scripts/extraccionDatos.py
+        run: python ./scripts/extraccionDatos.py
 
       - name: Commit updated JSON
         run: |
