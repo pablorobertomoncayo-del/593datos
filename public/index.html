@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>593datos</title>
+
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;700;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* RESET */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* BODY – CENTRADO TOTAL */
+body {
+  background: #000;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+
+  min-height: 100svh;          /* clave para mobile */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;     /* centrado vertical */
+  align-items: center;         /* centrado horizontal */
+
+  padding: 24px 20px;
+}
+
+/* SECCIONES */
+.section {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+/* NUMEROS GRANDES */
+.value {
+  font-size: clamp(64px, 18vw, 180px);
+  font-weight: 900;
+  line-height: 0.95;
+}
+
+.value.green { color: #65D567; }
+.value.gold  { color: #F6C26B; }
+
+/* TITULOS */
+.label {
+  font-size: 30px;
+  font-weight: 900;
+  margin-top: 10px;
+}
+
+/* UNIDADES */
+.unit {
+  font-size: 20px;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-top: 4px;
+}
+
+/* DIVISOR */
+.divider {
+  width: 100%;
+  max-width: 640px;
+  height: 1px;
+  background: rgba(255,255,255,0.2);
+  margin: 24px 0;
+}
+
+/* FOOTER */
+.footer {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 20px;
+  opacity: 0.9;
+}
+
+.date {
+  color: #65D567;
+  margin-top: 6px;
+}
+
+/* ICONO INSTAGRAM */
+.ig-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: #fff;
+}
+
+.ig-icon:hover {
+  color: #65D567;
+}
+
+.ig-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke-width: 1.6;
+}
+
+/* RESPONSIVE FINO (MOBILE) */
+@media (max-width: 480px) {
+  .section {
+    margin-bottom: 28px;
+  }
+
+  .label {
+    font-size: 26px;
+  }
+
+  .unit {
+    font-size: 18px;
+  }
+
+  .footer {
+    font-size: 18px;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+
+  <!-- RIESGO PAÍS -->
+  <div class="section">
+    <div id="riesgo-value" class="value green">0</div>
+    <div class="label">Riesgo país</div>
+    <div class="unit">(por puntos)</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ORO -->
+  <div class="section">
+    <div id="oro-value" class="value gold">0</div>
+    <div class="label">Precio Oro</div>
+    <div class="unit">(por onza troy)</div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    Banco Central del Ecuador
+    <div id="date" class="date">-- / -- / ----</div>
+  </div>
+
+  <!-- Instagram -->
+  <a
+    href="https://www.instagram.com/593datos/"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="ig-icon"
+    aria-label="Instagram 593datos"
+  >
+    <i data-lucide="instagram"></i>
+  </a>
+
+  <!-- SCRIPT -->
+  <script>
+    lucide.createIcons();
+
+    const dateEl = document.getElementById("date");
+    const riesgoEl = document.getElementById("riesgo-value");
+    const oroEl = document.getElementById("oro-value");
+
+    function formatNumber(value, decimals = 0) {
+      return Number(value).toLocaleString("es-EC", {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals
+      });
+    }
+
+    function easeOutQuint(x) {
+      return 1 - Math.pow(1 - x, 5);
+    }
+
+    function animateNumber({ to, el, duration = 1400, decimals = 0 }) {
+      if (!el || !Number.isFinite(Number(to))) {
+        if (el) el.textContent = "0";
+        return;
+      }
+
+      const start = performance.now();
+      const from = 0;
+
+      function frame(now) {
+        const p = Math.min(1, (now - start) / duration);
+        const eased = easeOutQuint(p);
+        const current = from + (to - from) * eased;
+        const shown = decimals === 0 ? Math.round(current) : current;
+
+        el.textContent = formatNumber(shown, decimals);
+
+        if (p < 1) requestAnimationFrame(frame);
+      }
+
+      requestAnimationFrame(frame);
+    }
+
+    fetch("datos_latest.json")
+      .then(res => res.json())
+      .then(data => {
+        const riesgo = data?.riesgo_pais?.latest;
+        const oro = data?.oro?.latest;
+
+        if (riesgo) {
+          animateNumber({ to: riesgo.valor, el: riesgoEl, decimals: 0 });
+          dateEl.textContent = riesgo.fecha_display;
+        }
+
+        if (oro) {
+          animateNumber({ to: oro.valor, el: oroEl, decimals: 2 });
+        }
+      })
+      .catch(err => {
+        console.error("Error leyendo datos_latest.json:", err);
+      });
+  </script>
+
+</body>
+</html>
