@@ -4,7 +4,7 @@ from pathlib import Path
 import requests
 
 SRC = "https://contenido.bce.fin.ec/documentos/informacioneconomica/indicadores/general/datos_formulario.json"
-OUT = Path("./public/datos_latest.json")
+OUT = Path("public/datos_latest.json")
 
 
 # ---------- Helpers ----------
@@ -178,3 +178,4 @@ def main():
 
 if __name__ == "__main__":
   main()
+
