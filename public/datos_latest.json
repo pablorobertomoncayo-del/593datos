@@ -1,16 +1,11 @@
 {
   "riesgo_pais": {
     "latest": {
-      "valor": 413,
-      "fecha_iso": "2026-01-27",
-      "fecha_display": "27 / 01 / 2026"
+      "valor": 414,
+      "fecha_iso": "2026-01-28",
+      "fecha_display": "28 / 01 / 2026"
     },
     "series_5d": [
-      {
-        "fecha_iso": "2026-01-23",
-        "fecha_display": "23 / 01 / 2026",
-        "valor": 446
-      },
       {
         "fecha_iso": "2026-01-24",
         "fecha_display": "24 / 01 / 2026",
@@ -30,6 +25,11 @@
         "fecha_iso": "2026-01-27",
         "fecha_display": "27 / 01 / 2026",
         "valor": 413
+      },
+      {
+        "fecha_iso": "2026-01-28",
+        "fecha_display": "28 / 01 / 2026",
+        "valor": 414
       }
     ]
   },
@@ -68,7 +68,7 @@
     ]
   },
   "source_bce": "https://contenido.bce.fin.ec/documentos/informacioneconomica/indicadores/general/datos_formulario.json",
-  "generated_at_utc": "2026-01-28T21:24:33Z",
+  "generated_at_utc": "2026-01-29T14:02:11Z",
   "petroleo": {
     "latest": {
       "valor": 60.46,
