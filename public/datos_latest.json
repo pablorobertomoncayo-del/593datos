@@ -68,12 +68,12 @@
     ]
   },
   "source_bce": "https://contenido.bce.fin.ec/documentos/informacioneconomica/indicadores/general/datos_formulario.json",
-  "generated_at_utc": "2026-01-30T14:04:27Z",
+  "generated_at_utc": "2026-01-30T14:06:24Z",
   "petroleo": {
     "latest": {
-      "valor": 65.18,
-      "fecha_iso": "2026-01-30",
-      "fecha_display": "30 / 01 / 2026",
+      "valor": 60.46,
+      "fecha_iso": "2026-01-26",
+      "fecha_display": "26 / 01 / 2026",
       "unit": "USD/barril",
       "source": "FRED: DCOILWTICO"
     }
