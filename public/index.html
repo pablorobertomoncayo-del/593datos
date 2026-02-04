@@ -1,70 +1,138 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>593 Datos ||| Dashboard</title>
 
-  <title>593datos</title>
-
-  <!-- Inter Font -->
+  <!-- Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;400;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;700;900&display=swap"
+    rel="stylesheet">
 
-
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
+  <main class="app">
+    <section class="container" aria-label="Dashboard de indicadores">
 
-  <div class="container">
-  <!-- RIESGO PAÍS -->
-  <div class="section">
-    <div id="riesgo-value" class="value green">0</div>
-    <div class="label">Riesgo país</div>
-    <div class="unit">(por puntos)</div>
-  </div>
+      <!-- FILA SUPERIOR -->
+      <div class="grid top">
 
-  <div class="divider"></div>
+        <!-- Barril de petróleo -->
+        <article class="card card--wti" aria-label="Barril de petróleo">
+          <header class="card__header">
+            <div class="card__title accent-wti">Barril de petróleo</div>
+            <div class="card__subtitle">WTI</div>
+            <div class="card__meta accent-wti" id="wti-fecha">-- / -- / ----</div>
+          </header>
+          <div class="card__big" id="wti-precio">--</div>
+        </article>
 
-  <!-- ORO -->
-  <div class="section">
-    <div id="oro-value" class="value gold">0</div>
-    <div class="label">Precio Oro</div>
-    <div class="unit">(por onza troy)</div>
-  </div>
+        <!-- Gasolina -->
+        <article class="card card--gas" aria-label="Gasolina">
+          <header class="card__header card__header--center">
+            <div class="card__title accent-gas">Gasolina</div>
+            <div class="card__meta" id="gas-fecha">-- / -- / ---- - por galón</div>
+          </header>
 
-  <div class="divider"></div>
+          <div class="gas-grid">
+            <div class="gas-col">
+              <div class="gas-label">Súper</div>
+              <div class="gas-value" id="gas-super">--</div>
+            </div>
 
-  <div class="block petroleo">
-    <div id="petroleoValue" class="value blue">--</div>
-    <div class="label">Precio Petróleo</div>
-    <div class="sub">(WTI Crude)</div>
-  </div>
+            <div class="gas-divider" aria-hidden="true"></div>
 
-  <!-- FOOTER -->
-  <div class="footer">
-    Banco Central del Ecuador
-    <div id="date" class="date">-- / -- / ----</div>
-  </div>
-  <!-- Instagram -->
-  <div class="instagram">
-  <a href="https://www.instagram.com/593datos/" target="_blank" rel="noopener noreferrer"
-    aria-label="Instagram 593datos">
-    <i data-lucide="instagram"></i>
-  </a>
-  </div>
+            <div class="gas-col">
+              <div class="gas-label">Extra</div>
+              <div class="gas-value" id="gas-extra">--</div>
+            </div>
 
-  </div>
+            <div class="gas-divider" aria-hidden="true"></div>
 
-  <!-- SCRIPT -->
-  <script src="script.js"></script>
+            <div class="gas-col">
+              <div class="gas-label">Diésel</div>
+              <div class="gas-value" id="gas-diesel">--</div>
+            </div>
+          </div>
+        </article>
 
+      </div>
+
+      <!-- FILA INFERIOR -->
+      <div class="grid bottom">
+
+        <!-- Riesgo país -->
+        <article class="card card--riesgo" aria-label="Riesgo país">
+          <header class="card__header card__header--center">
+            <div class="card__title accent-riesgo">Riesgo país</div>
+            <div class="card__subtitle">Por puntos</div>
+            <div class="card__meta accent-riesgo" id="riesgo-fecha">-- / -- / ----</div>
+          </header>
+
+          <div class="card__big" id="riesgo-valor">--</div>
+
+          <div class="rule rule--riesgo" aria-hidden="true"></div>
+
+          <!-- LISTA -->
+          <ul class="mini-list" id="riesgo-list"></ul>
+        </article>
+
+        <!-- Precio del oro -->
+        <article class="card card--oro" aria-label="Precio del oro">
+          <header class="card__header card__header--center">
+            <div class="card__title accent-oro">Precio del oro</div>
+            <div class="card__subtitle">Por onza troy</div>
+            <div class="card__meta accent-oro" id="oro-fecha">-- / -- / ----</div>
+          </header>
+
+          <div class="card__big" id="oro-valor">--</div>
+
+          <div class="rule rule--oro" aria-hidden="true"></div>
+
+          <!-- LISTA -->
+          <ul class="mini-list" id="oro-list"></ul>
+        </article>
+
+        <!-- Inflación mensual -->
+        <article class="card card--inflacion" aria-label="Inflación mensual">
+          <header class="card__header card__header--center">
+            <div class="card__title accent-inf">Inflación mensual</div>
+            <div class="card__subtitle">Variación porcentual</div>
+            <div class="card__meta accent-inf" id="inf-fecha">--/----</div>
+          </header>
+
+          <div class="card__big" id="inf-valor">--</div>
+
+          <div class="rule rule--inf" aria-hidden="true"></div>
+
+          <!-- LISTA -->
+          <ul class="mini-list" id="inf-list"></ul>
+        </article>
+
+      </div>
+    </section>
+    <footer class="footer">
+    <a href="https://www.instagram.com/593datos/" target="_blank" rel="noopener" aria-label="Instagram 593datos">
+      <i data-lucide="instagram"></i>
+    </a>
+  </footer>
+  </main>
+
+  
+
+  <!-- Lucide -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+
+
+  <script src="script.js" defer></script>
 </body>
 
 </html>
