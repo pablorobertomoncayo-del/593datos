@@ -68,10 +68,10 @@
     ]
   },
   "source_bce": "https://contenido.bce.fin.ec/documentos/informacioneconomica/indicadores/general/datos_formulario.json",
-  "generated_at_utc": "2026-02-04T11:45:50Z",
+  "generated_at_utc": "2026-02-04T14:29:27Z",
   "petroleo": {
     "latest": {
-      "valor": 63.29,
+      "valor": 60.46,
       "fecha_iso": "2026-01-26",
       "fecha_display": "26 / 01 / 2026",
       "unit": "USD/barril",
