@@ -1,16 +1,11 @@
 {
   "riesgo_pais": {
     "latest": {
-      "valor": 435,
-      "fecha_iso": "2026-02-02",
-      "fecha_display": "02 / 02 / 2026"
+      "valor": 444,
+      "fecha_iso": "2026-02-03",
+      "fecha_display": "03 / 02 / 2026"
     },
     "series_5d": [
-      {
-        "fecha_iso": "2026-01-29",
-        "fecha_display": "29 / 01 / 2026",
-        "valor": 425
-      },
       {
         "fecha_iso": "2026-01-30",
         "fecha_display": "30 / 01 / 2026",
@@ -30,21 +25,21 @@
         "fecha_iso": "2026-02-02",
         "fecha_display": "02 / 02 / 2026",
         "valor": 435
+      },
+      {
+        "fecha_iso": "2026-02-03",
+        "fecha_display": "03 / 02 / 2026",
+        "valor": 444
       }
     ]
   },
   "oro": {
     "latest": {
-      "valor": 4981.85,
-      "fecha_iso": "2026-02-01",
-      "fecha_display": "01 / 02 / 2026"
+      "valor": 4714.75,
+      "fecha_iso": "2026-02-02",
+      "fecha_display": "02 / 02 / 2026"
     },
     "series_5d": [
-      {
-        "fecha_iso": "2026-01-28",
-        "fecha_display": "28 / 01 / 2026",
-        "valor": 5306.95
-      },
       {
         "fecha_iso": "2026-01-29",
         "fecha_display": "29 / 01 / 2026",
@@ -64,11 +59,16 @@
         "fecha_iso": "2026-02-01",
         "fecha_display": "01 / 02 / 2026",
         "valor": 4981.85
+      },
+      {
+        "fecha_iso": "2026-02-02",
+        "fecha_display": "02 / 02 / 2026",
+        "valor": 4714.75
       }
     ]
   },
   "source_bce": "https://contenido.bce.fin.ec/documentos/informacioneconomica/indicadores/general/datos_formulario.json",
-  "generated_at_utc": "2026-02-03T14:31:49Z",
+  "generated_at_utc": "2026-02-04T11:45:50Z",
   "petroleo": {
     "latest": {
       "valor": 60.46,
