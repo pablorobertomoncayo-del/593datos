@@ -2,7 +2,7 @@
   --bkg: #000000;
   --white: #ffffff;
 
-  /* variables de color */
+  /* colores */
   --petroleo: #00c8b3;
   --gasolina: #ff869d;
   --reservas: #f87deb;
@@ -46,7 +46,7 @@ body {
   margin: 0;
   background: var(--bkg);
   color: var(--white);
-  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   font-weight: 300;
 
   display: flex;
@@ -55,23 +55,18 @@ body {
   justify-content: center;
 
   text-align: center;
+  overflow-x: hidden;
 }
 
-/* header */
+/* ---------- HEADER ---------- */
+
 .header {
   width: min(1885px, calc(100% - 40px));
   margin-bottom: 12px;
 }
 
-.app-title {
-  margin: 0;
-  font-weight: 300;
-  font-size: 20px;
-  letter-spacing: 0.2px;
-  opacity: 0.95;
-}
+/* ---------- CONTAINER ---------- */
 
-/* main container */
 .container {
   width: min(1885px, calc(100% - 40px));
   max-height: 823px;
@@ -81,15 +76,24 @@ body {
   gap: var(--gap);
 }
 
+/* ---------- TOP ROW ---------- */
+
 .top-row {
   display: grid;
+  grid-template-areas: "wti gas res";
   grid-template-columns: var(--wtiW) var(--gasW) var(--resW);
   gap: var(--gap);
 }
 
+.card--wti { grid-area: wti; }
+.card--gas { grid-area: gas; }
+.card--res { grid-area: res; }
+
+/* ---------- BOTTOM ROW ---------- */
+
 .bottom-row {
   display: grid;
-  grid-template-columns: var(--colW) var(--colW) var(--colW) var(--colW);
+  grid-template-columns: repeat(4, var(--colW));
   gap: var(--gap);
 }
 
@@ -99,6 +103,8 @@ body {
   gap: var(--gap);
 }
 
+/* ---------- CARDS ---------- */
+
 .card {
   background: var(--box);
   border-radius: var(--radius);
@@ -106,8 +112,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 0px;
-  min-width: 0;
 }
 
 .card--wti,
@@ -124,77 +128,56 @@ body {
   height: var(--shortH);
 }
 
+/* ---------- TEXT ---------- */
+
 .card-top {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
 .kicker {
   font-size: var(--titleSize);
-  font-weight: 300;
-  line-height: 1.1;
   margin-bottom: 6px;
 }
 
 .subtitle {
   font-size: var(--subSize);
   font-weight: 500;
-  line-height: 1.2;
   margin-bottom: 6px;
-}
-
-.subtitle-sep {
-  opacity: 0.7;
-  margin: 0 6px;
 }
 
 .meta {
   font-size: var(--subSize);
-  font-weight: 300;
-  line-height: 1.2;
   margin-bottom: 10px;
-}
-
-.value {
-  line-height: 1;
 }
 
 .value--big {
   font-size: var(--valueBig);
   font-weight: 100;
+  line-height: 1;
 }
 
-/* gasolina layout */
+/* ---------- GASOLINA ---------- */
+
 .gas-grid {
-  margin-top: 6px;
   display: grid;
   grid-template-columns: 1fr 1px 1fr 1px 1fr;
   align-items: center;
-  height: 100%;
 }
 
 .gas-col {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.gas-label {
-  font-size: var(--subSize);
-  font-weight: 500;
-  margin-bottom: 8px;
+  padding: 0 6px;
 }
 
 .gas-divider {
   width: 1px;
   height: 140px;
   background: rgba(255, 255, 255, 0.35);
-  border-radius: 1px;
 }
 
-/* tall cards with list */
+/* ---------- LISTAS ---------- */
+
 .card-half {
   height: 224px;
   display: flex;
@@ -204,103 +187,34 @@ body {
 
 .separator {
   border-top: 1px solid transparent;
-  margin: 6px 0 10px;
+  margin: 10px 0;
 }
 
-.list {
+.list .row {
   display: flex;
-  flex-direction: column;
-  gap: 0;
-  padding-top: 4px;
-}
-
-.row {
-  display: flex;
-  align-items: center;
   justify-content: space-between;
   padding: 8px 6px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255,255,255,.1);
 }
 
-.row:first-child {
-  border-top: 0;
-}
+/* ---------- COLORES ---------- */
 
-.row-date {
-  font-size: var(--subSize);
-  font-weight: 100;
-  color: var(--white);
-  opacity: 0.95;
-}
+[data-color="petroleo"] { color: var(--petroleo); }
+[data-color="gasolina"] { color: var(--gasolina); }
+[data-color="reservas"] { color: var(--reservas); }
+[data-color="riesgo"] { color: var(--riesgo); }
+[data-color="oro"] { color: var(--oro); }
+[data-color="inflacion"] { color: var(--inflacion); }
+[data-color="banano"] { color: var(--banano); }
+[data-color="cacao"] { color: var(--cacao); }
 
-.row-val {
-  font-size: var(--subSize);
-  font-weight: 300;
-}
+/* ---------- FOOTER ---------- */
 
-/* color mapping by data-color attr */
-[data-color="petroleo"] {
-  color: var(--petroleo);
-}
-[data-color="gasolina"] {
-  color: var(--gasolina);
-}
-[data-color="reservas"] {
-  color: var(--reservas);
-}
-[data-color="riesgo"] {
-  color: var(--riesgo);
-}
-[data-color="oro"] {
-  color: var(--oro);
-}
-[data-color="inflacion"] {
-  color: var(--inflacion);
-}
-[data-color="banano"] {
-  color: var(--banano);
-}
-[data-color="cacao"] {
-  color: var(--cacao);
-}
-
-.separator[data-color="riesgo"] {
-  border-top-color: var(--riesgo);
-}
-.separator[data-color="oro"] {
-  border-top-color: var(--oro);
-}
-.separator[data-color="inflacion"] {
-  border-top-color: var(--inflacion);
-}
-
-.row-val[data-color="riesgo"] {
-  color: var(--riesgo);
-}
-.row-val[data-color="oro"] {
-  color: var(--oro);
-}
-.row-val[data-color="inflacion"] {
-  color: var(--inflacion);
-}
-
-/* footer */
 .footer {
   width: min(1845px, calc(100% - 40px));
-  height: 24px;
   display: flex;
-  align-items: center;
   justify-content: center;
   margin-top: 12px;
-}
-
-.ig {
-  color: var(--white);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  transition: color 220ms ease;
 }
 
 .ig svg {
@@ -308,80 +222,65 @@ body {
   height: 22px;
 }
 
-/* responsive: escala a pantallas más chicas sin romper la proporción */
-@media (max-width: 1920px) {
+/* =====================================================
+   BREAKPOINTS IMPORTANTES
+   ===================================================== */
+
+/* LAPTOP / DESKTOP CHICO */
+@media (max-width: 1850px) {
   .top-row {
-    grid-template-columns: minmax(280px, var(--wtiW)) minmax(520px, var(--gasW)) minmax(280px, var(--resW));
-  }
-}
-
-@media (max-width: 1400px) {
-  :root {
-    --valueBig: 64px;
-  }
-
-  .bottom-row {
+    grid-template-areas:
+      "gas gas"
+      "wti res";
     grid-template-columns: 1fr 1fr;
   }
 
-  .right-stack {
-    grid-template-rows: var(--shortH) var(--shortH);
+  .card--gas {
+    height: auto;
+    min-height: var(--topH);
   }
 }
 
+/* MOBILE */
 @media (max-width: 980px) {
-  .top-row {
-    grid-template-columns: 1fr;
+  body {
+    justify-content: flex-start;
+    min-height: 100vh;
   }
 
-  .card--wti,
-  .card--gas,
-  .card--res {
-    height: auto;
-    min-height: var(--topH);
+  .container {
+    max-height: none;
+    flex: 1 0 auto;
+  }
+
+  .top-row {
+    grid-template-areas:
+      "wti"
+      "gas"
+      "res";
+    grid-template-columns: 1fr;
   }
 
   .bottom-row {
     grid-template-columns: 1fr;
-  }
-
-  .card--tall {
-    height: auto;
-    min-height: var(--tallH);
   }
 
   .right-stack {
     grid-template-rows: auto;
   }
-}
 
-/* Ajuste responsive SOLO para valores de gasolina */
-@media (max-width: 980px) {
+  .card--tall,
+  .card--short {
+    height: auto;
+  }
+
+  /* gasolina valores más chicos */
   .card--gas .value--big {
-    font-size: 40px;      /* antes 75px */
-    letter-spacing: -0.5px;
-  }
-
-  .gas-col {
-    padding: 0 6px;       /* separa visualmente columnas */
-  }
-}
-
-@media (max-width: 980px) {
-  body {
-    min-height: 100vh;
-    justify-content: flex-start; /* ya lo habíamos tocado */
-  }
-
-  .container {
-    max-height: none;     /* 🔥 clave: dejar que el dashboard crezca */
-    flex: 1 0 auto;       /* ocupa el espacio disponible */
+    font-size: 56px;
   }
 
   .footer {
-    margin-top: auto;     /* empuja el footer hacia abajo */
-    padding: 16px 0;      /* aire en mobile */
+    margin-top: auto;
+    padding: 16px 0;
   }
 }
-
-
