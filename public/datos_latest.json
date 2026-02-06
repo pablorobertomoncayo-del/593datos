@@ -1,81 +1,115 @@
 {
-  "riesgo_pais": {
-    "latest": {
-      "valor": 444,
-      "fecha_iso": "2026-02-03",
-      "fecha_display": "03 / 02 / 2026"
+  "generated_at": "2026-02-06T13:56:32.053172+00:00",
+  "manual": {
+    "wti": {
+      "fecha": "2026-02-06",
+      "precio_usd_barril": 62.92,
+      "fuente": "Manual (Bloomberg)"
     },
-    "series_5d": [
-      {
-        "fecha_iso": "2026-01-30",
-        "fecha_display": "30 / 01 / 2026",
-        "valor": 439
-      },
-      {
-        "fecha_iso": "2026-01-31",
-        "fecha_display": "31 / 01 / 2026",
-        "valor": 439
-      },
-      {
-        "fecha_iso": "2026-02-01",
-        "fecha_display": "01 / 02 / 2026",
-        "valor": 439
-      },
-      {
-        "fecha_iso": "2026-02-02",
-        "fecha_display": "02 / 02 / 2026",
-        "valor": 435
-      },
-      {
-        "fecha_iso": "2026-02-03",
-        "fecha_display": "03 / 02 / 2026",
-        "valor": 444
-      }
-    ]
-  },
-  "oro": {
-    "latest": {
-      "valor": 4714.75,
-      "fecha_iso": "2026-02-02",
-      "fecha_display": "02 / 02 / 2026"
+    "gasolina_super": {
+      "fecha": "2026-02-12",
+      "precio_usd_galon": 3.36
     },
-    "series_5d": [
-      {
-        "fecha_iso": "2026-01-29",
-        "fecha_display": "29 / 01 / 2026",
-        "valor": 5405
-      },
-      {
-        "fecha_iso": "2026-01-30",
-        "fecha_display": "30 / 01 / 2026",
-        "valor": 4981.85
-      },
-      {
-        "fecha_iso": "2026-01-31",
-        "fecha_display": "31 / 01 / 2026",
-        "valor": 4981.85
-      },
-      {
-        "fecha_iso": "2026-02-01",
-        "fecha_display": "01 / 02 / 2026",
-        "valor": 4981.85
-      },
-      {
-        "fecha_iso": "2026-02-02",
-        "fecha_display": "02 / 02 / 2026",
-        "valor": 4714.75
-      }
-    ]
-  },
-  "source_bce": "https://contenido.bce.fin.ec/documentos/informacioneconomica/indicadores/general/datos_formulario.json",
-  "generated_at_utc": "2026-02-04T14:29:27Z",
-  "petroleo": {
-    "latest": {
-      "valor": 60.46,
-      "fecha_iso": "2026-01-26",
-      "fecha_display": "26 / 01 / 2026",
-      "unit": "USD/barril",
-      "source": "FRED: DCOILWTICO"
+    "gasolina_extra": {
+      "fecha": "2026-02-12",
+      "precio_usd_galon": 2.67
+    },
+    "gasolina_diesel": {
+      "fecha": "2026-02-12",
+      "precio_usd_galon": 2.71
     }
+  },
+  "bce": {
+    "riesgo_pais_last5": [
+      {
+        "fecha": "2026-02-01",
+        "valor": 439.0,
+        "medida": "Puntos Básicos"
+      },
+      {
+        "fecha": "2026-02-02",
+        "valor": 435.0,
+        "medida": "Puntos Básicos"
+      },
+      {
+        "fecha": "2026-02-03",
+        "valor": 444.0,
+        "medida": "Puntos Básicos"
+      },
+      {
+        "fecha": "2026-02-04",
+        "valor": 441.0,
+        "medida": "Puntos Básicos"
+      },
+      {
+        "fecha": "2026-02-05",
+        "valor": 457.0,
+        "medida": "Puntos básicos"
+      }
+    ],
+    "oro_last5": [
+      {
+        "fecha": "2026-01-31",
+        "valor": 4981.85,
+        "medida": "USD / Onza Troy"
+      },
+      {
+        "fecha": "2026-02-01",
+        "valor": 4981.85,
+        "medida": "USD / Onza Troy"
+      },
+      {
+        "fecha": "2026-02-02",
+        "valor": 4714.75,
+        "medida": "USD / Onza Troy"
+      },
+      {
+        "fecha": "2026-02-03",
+        "valor": 4920.95,
+        "medida": "USD / Onza Troy"
+      },
+      {
+        "fecha": "2026-02-04",
+        "valor": 4985.1,
+        "medida": "USD / Onza Troy"
+      }
+    ],
+    "inflacion_last5": [
+      {
+        "fecha": "2025-09-01",
+        "mensual": 0.083879583882163,
+        "anual": 0.719670007261652,
+        "acumulada": 2.22683334944276,
+        "medida": "Porcentaje"
+      },
+      {
+        "fecha": "2025-10-01",
+        "mensual": 0.28029474906508,
+        "anual": 1.24322864580293,
+        "acumulada": 2.51336979545675,
+        "medida": "Porcentaje"
+      },
+      {
+        "fecha": "2025-11-01",
+        "mensual": -0.442938535498227,
+        "anual": 1.05347129343987,
+        "acumulada": 2.05929857659488,
+        "medida": "Porcentaje"
+      },
+      {
+        "fecha": "2025-12-01",
+        "mensual": -0.141455257532241,
+        "anual": 1.91493033295775,
+        "acumulada": 1.91493033295775,
+        "medida": "Porcentaje"
+      },
+      {
+        "fecha": "2026-01-01",
+        "mensual": 0.37,
+        "anual": 2.44,
+        "acumulada": 0.37,
+        "medida": "Porcentaje"
+      }
+    ]
   }
 }
