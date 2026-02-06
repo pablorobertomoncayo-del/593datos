@@ -50,10 +50,11 @@ body {
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   font-weight: 300;
   display: flex;
-  justify-content: center;   /* centrado horizontal */
-  align-items: center;   /* NO centrado vertical (clave para laptop/móvil) */
+  justify-content: center;   
+  align-items: center;  
   overflow-x: hidden;
   text-align: center;
+  
 }
 
 /* WRAPPER QUE LIMITA TAMAÑO TOTAL */
@@ -332,7 +333,7 @@ body {
 
 @media (max-width: 700px) {
   .viewport {
-    align-items: flex-start;
+    align-items: center;
     overflow: auto;
   }
 
@@ -340,5 +341,30 @@ body {
     width: 100%;
     height: auto;
     transform: none !important;
+  }
+}
+
+@media (max-width: 700px) {
+  /* Gasolina: pasar de 3 columnas a 1 columna (stack) */
+  .card--gas .gas-grid {
+    grid-template-columns: 1fr;
+    row-gap: 14px;
+    height: auto;
+  }
+
+  /* Ocultar separadores verticales */
+  .card--gas .gas-divider {
+    display: none;
+  }
+
+  /* Centrar mejor cada bloque */
+  .card--gas .gas-col {
+    padding: 0;
+  }
+
+  /* Valores un poco más chicos para que respiren */
+  .card--gas .value--big {
+    font-size: 56px;
+    letter-spacing: -0.5px;
   }
 }
