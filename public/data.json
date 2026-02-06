@@ -17,7 +17,16 @@
     "gasolina_diesel": {
       "fecha": "2026-02-12",
       "precio_usd_galon": 2.71
+    },
+    "reservas": {
+      "fecha": "2023-12-31",
+      "valorR": 1651
+    },
+    "cacao": {
+      "fecha": "2023-12-31",
+      "valorC": 4154
     }
+
   },
   "bce": {
     "riesgo_pais_last5": [
