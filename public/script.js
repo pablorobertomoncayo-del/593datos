@@ -1,203 +1,173 @@
-async function loadData() {
-  const res = await fetch("./data.json", { cache: "no-store" });
-  if (!res.ok) throw new Error("No se pudo cargar data.json");
-  return await res.json();
+/* global lucide */
+
+const PATH_DATA = "./data.json";
+const PATH_BANANO = "./banano.json";
+
+// Formatos (ajustados para parecerse a la maqueta del PDF)
+const fmtEU = (n, decimals = 2) =>
+  new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  }).format(n);
+
+const fmtUS = (n, decimals = 2) =>
+  new Intl.NumberFormat("en-US", {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  }).format(n);
+
+const fmtPercentUS = (n, decimals = 2) =>
+  `${new Intl.NumberFormat("en-US", {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals,
+  }).format(n)}%`;
+
+// Helpers
+function $(id) {
+  return document.getElementById(id);
 }
 
-/* =======================
-   Helpers
-======================= */
-
-function pad2(n) {
-  return String(n).padStart(2, "0");
-}
-
-function formatDateDMY(isoDate) {
-  if (!isoDate) return "-- / -- / ----";
-  const d = new Date(isoDate + "T00:00:00");
-  return `${pad2(d.getDate())} / ${pad2(d.getMonth() + 1)} / ${d.getFullYear()}`;
-}
-
-function formatMonthYear(isoDate) {
-  if (!isoDate) return "--/----";
-  const d = new Date(isoDate + "T00:00:00");
-  return `${pad2(d.getMonth() + 1)}/${d.getFullYear()}`;
-}
-
-function formatShortDayMonthES(isoDate) {
-  if (!isoDate) return "--";
-  const d = new Date(isoDate + "T00:00:00");
-  const day = d.getDate();
-  const mon = d
-    .toLocaleString("es-EC", { month: "short" })
-    .replace(".", "");
-  return `${day} ${mon}.`;
-}
-
-function formatPrice(num, digits = 2) {
-  if (num === null || num === undefined || isNaN(num)) return "--";
-  return Number(num).toLocaleString("es-EC", {
-    minimumFractionDigits: digits,
-    maximumFractionDigits: digits,
-  });
-}
-
-function formatPercent(num) {
-  if (num === null || num === undefined || isNaN(num)) return "--";
-  return `${Number(num).toLocaleString("es-EC", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  })}%`;
-}
-
-function byFechaAsc(a, b) {
-  return new Date(a.fecha) - new Date(b.fecha);
-}
-
-function last5Sorted(arr) {
-  if (!Array.isArray(arr)) return [];
-  return [...arr].sort(byFechaAsc).slice(-5);
-}
-
-function lastItemSorted(arr) {
+function safeLast(arr) {
   if (!Array.isArray(arr) || arr.length === 0) return null;
-  return [...arr].sort(byFechaAsc).pop();
+  return arr[arr.length - 1];
 }
 
-function setText(id, value) {
-  const el = document.getElementById(id);
-  if (el) el.textContent = value;
+function parseCommaDecimal(str) {
+  // "10,20" -> 10.20
+  if (typeof str === "number") return str;
+  if (typeof str !== "string") return NaN;
+  const normalized = str.replace(/\./g, "").replace(",", ".");
+  const n = Number(normalized);
+  return Number.isFinite(n) ? n : NaN;
 }
 
-/* =======================
-   Render lista genérica
-======================= */
+function renderList(containerEl, items, valueColorKey, mapValueText) {
+  containerEl.innerHTML = "";
+  items.forEach((it) => {
+    const row = document.createElement("div");
+    row.className = "row";
 
-function renderList(id, items, valueFormatter) {
-  const ul = document.getElementById(id);
-  if (!ul) return;
+    const d = document.createElement("div");
+    d.className = "row-date";
+    d.textContent = it.fecha ?? "—";
 
-  ul.innerHTML = "";
+    const v = document.createElement("div");
+    v.className = "row-val";
+    v.setAttribute("data-color", valueColorKey);
+    v.textContent = mapValueText(it);
 
-  items.forEach((item) => {
-    const li = document.createElement("li");
-    li.className = "mini-item";
-
-    li.innerHTML = `
-      ${formatShortDayMonthES(item.fecha)} <span class="v">${valueFormatter(item)}</span>
-    `;
-
-    ul.appendChild(li);
+    row.appendChild(d);
+    row.appendChild(v);
+    containerEl.appendChild(row);
   });
 }
 
-/* =======================
-   Init
-======================= */
-
-(async function init() {
-  try {
-    const data = await loadData();
-
-    /* ========= WTI ========= */
-    setText("wti-fecha", formatDateDMY(data?.manual?.wti?.fecha));
-    setText(
-      "wti-precio",
-      formatPrice(data?.manual?.wti?.precio_usd_barril)
-    );
-
-    /* ========= Gasolina ========= */
-    setText(
-      "gas-fecha",
-      `${formatDateDMY(
-        data?.manual?.gasolina_super?.fecha
-      )} - por galón`
-    );
-
-    setText(
-      "gas-super",
-      formatPrice(data?.manual?.gasolina_super?.precio_usd_galon)
-    );
-    setText(
-      "gas-extra",
-      formatPrice(data?.manual?.gasolina_extra?.precio_usd_galon)
-    );
-    setText(
-      "gas-diesel",
-      formatPrice(data?.manual?.gasolina_diesel?.precio_usd_galon)
-    );
-
-    /* ========= BCE ========= */
-    const riesgo5 = last5Sorted(data?.bce?.riesgo_pais_last5);
-    const oro5 = last5Sorted(data?.bce?.oro_last5);
-    const inflacion5 = last5Sorted(data?.bce?.inflacion_last5);
-
-    const riesgoLast = lastItemSorted(riesgo5);
-    const oroLast = lastItemSorted(oro5);
-    const inflacionLast = lastItemSorted(inflacion5);
-
-    /* Riesgo país */
-    setText("riesgo-fecha", formatDateDMY(riesgoLast?.fecha));
-    setText(
-      "riesgo-valor",
-      riesgoLast ? Math.round(riesgoLast.valor) : "--"
-    );
-
-    renderList("riesgo-list", riesgo5, (it) =>
-      Math.round(Number(it.valor))
-    );
-
-    /* Oro */
-    setText("oro-fecha", formatDateDMY(oroLast?.fecha));
-    setText(
-      "oro-valor",
-      oroLast ? formatPrice(oroLast.valor) : "--"
-    );
-
-    renderList("oro-list", oro5, (it) =>
-      formatPrice(it.valor)
-    );
-
-    /* Inflación */
-    setText(
-      "inf-fecha",
-      formatMonthYear(inflacionLast?.fecha)
-    );
-    setText(
-      "inf-valor",
-      inflacionLast ? formatPercent(inflacionLast.mensual) : "--"
-    );
-
-    renderList("inf-list", inflacion5, (it) =>
-      formatPercent(it.mensual)
-    );
-
-  } catch (err) {
-    console.error(err);
-    alert(
-      "Error cargando el dashboard. Verifica que data.json esté junto al index.html"
-    );
-  }
-})();
-
-(function instagramRandomColor() {
-  const ig = document.querySelector(".footer a");
-  if (!ig) return;
-
+function randomThemeColor() {
+  // colores variables (los mismos del CSS)
   const colors = [
-    "var(--wti)",
-    "var(--gas)",
+    "var(--petroleo)",
+    "var(--gasolina)",
+    "var(--reservas)",
     "var(--riesgo)",
     "var(--oro)",
-    "var(--inf)"
+    "var(--inflacion)",
+    "var(--banano)",
+    "var(--cacao)",
   ];
+  return colors[Math.floor(Math.random() * colors.length)];
+}
 
-  ig.addEventListener("mouseenter", () => {
-    const random = colors[Math.floor(Math.random() * colors.length)];
-    ig.style.color = random;
-  });
+async function load() {
+  const [dataRes, banRes] = await Promise.all([fetch(PATH_DATA), fetch(PATH_BANANO)]);
+  if (!dataRes.ok) throw new Error(`No pude leer ${PATH_DATA}`);
+  if (!banRes.ok) throw new Error(`No pude leer ${PATH_BANANO}`);
 
-  ig.addEventListener("mouseleave", () => {
-    ig.style.color = "#ffffff";
-  });
-})();
+  const data = await dataRes.json();
+  const banano = await banRes.json();
+
+  // ========== TOP ROW ==========
+  // WTI (data.manual.wti.precio_usd_barril)
+  $("wti-fecha").textContent = data?.manual?.wti?.fecha ?? "—";
+  const wti = data?.manual?.wti?.precio_usd_barril;
+  $("wti-valor").textContent = Number.isFinite(wti) ? `$${fmtEU(wti, 2)}` : "—";
+
+  // Gasolina (fecha tomada de super)
+  $("gas-fecha").textContent = data?.manual?.gasolina_super?.fecha ?? "—";
+  const gSup = data?.manual?.gasolina_super?.precio_usd_galon;
+  const gExt = data?.manual?.gasolina_extra?.precio_usd_galon;
+  const gDie = data?.manual?.gasolina_diesel?.precio_usd_galon;
+  $("gas-super").textContent = Number.isFinite(gSup) ? `$${fmtEU(gSup, 2)}` : "—";
+  $("gas-extra").textContent = Number.isFinite(gExt) ? `$${fmtEU(gExt, 2)}` : "—";
+  $("gas-diesel").textContent = Number.isFinite(gDie) ? `$${fmtEU(gDie, 2)}` : "—";
+
+  // Reservas (data.manual.reservas.valorR)
+  $("res-fecha").textContent = data?.manual?.reservas?.fecha ?? "—";
+  const res = data?.manual?.reservas?.valorR;
+  $("res-valor").textContent = Number.isFinite(res) ? fmtEU(res, 0) : "—";
+
+  // ========== BOTTOM ROW ==========
+  // Riesgo país (bce.riesgo_pais_last5)
+  const riesgoArr = data?.bce?.riesgo_pais_last5 ?? [];
+  const riesgoLast = safeLast(riesgoArr);
+  $("riesgo-fecha-last").textContent = riesgoLast?.fecha ?? "—";
+  $("riesgo-valor-last").textContent =
+    Number.isFinite(riesgoLast?.valor) ? `${fmtUS(riesgoLast.valor, 0)}` : "—";
+
+  renderList($("riesgo-list"), riesgoArr, "riesgo", (it) =>
+    Number.isFinite(it?.valor) ? `${fmtUS(it.valor, 0)}` : "—"
+  );
+
+  // Oro (bce.oro_last5)
+  const oroArr = data?.bce?.oro_last5 ?? [];
+  const oroLast = safeLast(oroArr);
+  $("oro-fecha-last").textContent = oroLast?.fecha ?? "—";
+  $("oro-valor-last").textContent =
+    Number.isFinite(oroLast?.valor) ? `$${fmtEU(oroLast.valor, 2)}` : "—";
+
+  renderList($("oro-list"), oroArr, "oro", (it) =>
+    Number.isFinite(it?.valor) ? `$${fmtEU(it.valor, 2)}` : "—"
+  );
+
+  // Inflación (bce.inflacion_last5): usamos "mensual"
+  const inflArr = data?.bce?.inflacion_last5 ?? [];
+  const inflLast = safeLast(inflArr);
+  $("infl-fecha-last").textContent = inflLast?.fecha ?? "—";
+  $("infl-valor-last").textContent =
+    Number.isFinite(inflLast?.mensual) ? fmtPercentUS(inflLast.mensual, 2) : "—";
+
+  renderList($("infl-list"), inflArr, "inflacion", (it) =>
+    Number.isFinite(it?.mensual) ? fmtPercentUS(it.mensual, 2) : "—"
+  );
+
+  // Banano (banano.json)
+  $("ban-fecha").textContent = banano?.fecha ?? "—";
+  const banPrice = parseCommaDecimal(banano?.precio);
+  $("ban-valor").textContent = Number.isFinite(banPrice) ? `$${fmtEU(banPrice, 2)}` : "—";
+
+  // Cacao (data.manual.cacao.valorC)
+  $("cacao-fecha").textContent = data?.manual?.cacao?.fecha ?? "—";
+  const cacao = data?.manual?.cacao?.valorC;
+  // En el PDF se ve con miles y decimales tipo US ($4,154.00), lo replico así.
+  $("cacao-valor").textContent = Number.isFinite(cacao) ? `$${fmtUS(cacao, 2)}` : "—";
+
+  // Iconos
+  if (window.lucide?.createIcons) lucide.createIcons();
+
+  // Hover instagram: random color (sin escala)
+  const ig = document.querySelector(".ig");
+  if (ig) {
+    ig.addEventListener("mouseenter", () => {
+      ig.style.color = randomThemeColor();
+    });
+    ig.addEventListener("mouseleave", () => {
+      ig.style.color = "var(--white)";
+    });
+  }
+}
+
+load().catch((err) => {
+  console.error(err);
+  // fallback visual mínimo
+  const title = document.querySelector(".app-title");
+  if (title) title.textContent = "593Datos / Dashboard (Error cargando JSON)";
+});
