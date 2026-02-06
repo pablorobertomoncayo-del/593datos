@@ -1,1 +1,315 @@
+:root {
+  --bkg: #000000;
+  --white: #ffffff;
+
+  /* colores */
+  --petroleo: #00c8b3;
+  --gasolina: #ff869d;
+  --reservas: #f87deb;
+  --riesgo: #65d567;
+  --oro: #ff8c42;
+  --inflacion: #9fd2ff;
+  --banano: #eab17f;
+  --cacao: #d0976d;
+
+  --box: #36372f;
+
+  --radius: 30px;
+  --pad: 20px;
+  --gap: 20px;
+
+  /* tamaños Figma */
+  --wtiW: 395px;
+  --gasW: 1015px;
+  --resW: 395px;
+
+  --topH: 230px;
+
+  --colW: 446px;
+  --tallH: 489px;
+  --shortH: 234px;
+
+  --titleSize: 25px;
+  --subSize: 20px;
+  --valueBig: 75px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bkg);
+  color: var(--white);
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;   /* centrado horizontal */
+  align-items: center;   /* NO centrado vertical (clave para laptop/móvil) */
+  overflow-x: hidden;
+  text-align: center;
+}
+
+/* WRAPPER QUE LIMITA TAMAÑO TOTAL */
+.app {
+  width: 100%;
+  max-width: 1885px;
+  
+  /* En desktop/laptop NO puede pasar de 823px */
+  max-height: 823px;
+
+  padding: var(--pad);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+/* CONTENEDOR PRINCIPAL */
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  flex: 1 1 auto;
+  min-height: 0; /* importante para que el contenido se comporte bien con max-height */
+}
+
+/* ---------- TOP ROW ---------- */
+.top-row {
+  display: grid;
+  grid-template-columns: var(--wtiW) var(--gasW) var(--resW);
+  gap: var(--gap);
+}
+
+/* ---------- BOTTOM ROW ---------- */
+.bottom-row {
+  display: grid;
+  grid-template-columns: repeat(4, var(--colW));
+  gap: var(--gap);
+}
+
+.right-stack {
+  display: grid;
+  grid-template-rows: var(--shortH) var(--shortH);
+  gap: var(--gap);
+}
+
+/* ---------- CARDS ---------- */
+.card {
+  background: var(--box);
+  border-radius: var(--radius);
+  padding: var(--pad);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.card--wti,
+.card--gas,
+.card--res {
+  height: var(--topH);
+}
+
+.card--tall {
+  height: var(--tallH);
+}
+
+.card--short {
+  height: var(--shortH);
+}
+
+/* ---------- TEXT ---------- */
+.card-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.kicker {
+  font-size: var(--titleSize);
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  font-size: var(--subSize);
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+
+.subtitle-sep {
+  opacity: 0.7;
+  margin: 0 6px;
+}
+
+.meta {
+  font-size: var(--subSize);
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.value--big {
+  font-size: var(--valueBig);
+  font-weight: 100;
+  line-height: 1;
+}
+
+/* ---------- GASOLINA ---------- */
+.gas-grid {
+  margin-top: 6px;
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr 1px 1fr;
+  align-items: center;
+  height: 100%;
+}
+
+.gas-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 6px;
+}
+
+.gas-label {
+  font-size: var(--subSize);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.gas-divider {
+  width: 1px;
+  height: 140px;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 1px;
+}
+
+/* ---------- TALL LIST CARDS ---------- */
+.card-half {
+  height: 224px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.separator {
+  border-top: 1px solid transparent;
+  margin: 6px 0 10px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  padding-top: 4px;
+  min-height: 0;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.row:first-child {
+  border-top: 0;
+}
+
+.row-date {
+  font-size: var(--subSize);
+  font-weight: 100;
+  opacity: 0.95;
+}
+
+.row-val {
+  font-size: var(--subSize);
+  font-weight: 300;
+}
+
+/* ---------- COLORS ---------- */
+[data-color="petroleo"] { color: var(--petroleo); }
+[data-color="gasolina"] { color: var(--gasolina); }
+[data-color="reservas"] { color: var(--reservas); }
+[data-color="riesgo"] { color: var(--riesgo); }
+[data-color="oro"] { color: var(--oro); }
+[data-color="inflacion"] { color: var(--inflacion); }
+[data-color="banano"] { color: var(--banano); }
+[data-color="cacao"] { color: var(--cacao); }
+
+.separator[data-color="riesgo"] { border-top-color: var(--riesgo); }
+.separator[data-color="oro"] { border-top-color: var(--oro); }
+.separator[data-color="inflacion"] { border-top-color: var(--inflacion); }
+
+/* ---------- FOOTER (instagram) ---------- */
+.footer {
+  width: 100%;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ig {
+  color: var(--white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.ig svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* 3) Mobile: todo en 1 columna, y el alto puede crecer */
+@media (max-width: 700px) {
+  .app {
+    max-height: none; /* en móvil permitimos scroll */
+  }
+
+  .top-row {
+    grid-template-columns: 1fr;
+  }
+
+  .bottom-row {
+    grid-template-columns: 1fr;
+  }
+
+  .right-stack {
+    grid-template-rows: auto;
+  }
+
+  .card--wti,
+  .card--gas,
+  .card--res,
+  .card--tall,
+  .card--short {
+    height: auto;
+    min-height: 0;
+  }
+
+  /* gasolina: valores más chicos para que no se peguen */
+  .card--gas .value--big {
+    font-size: 56px;
+    letter-spacing: -0.5px;
+  }
+
+  .footer {
+    margin-top: 12px;
+    padding-bottom: 16px;
+  }
+}
 
