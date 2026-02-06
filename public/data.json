@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-02-05T15:22:15.609548+00:00",
+  "generated_at": "2026-02-06T13:56:32.053172+00:00",
   "manual": {
     "wti": {
-      "fecha": "2026-02-05",
-      "precio_usd_barril": 63.40,
+      "fecha": "2026-02-06",
+      "precio_usd_barril": 62.92,
       "fuente": "Manual (Bloomberg)"
     },
     "gasolina_super": {
@@ -22,11 +22,6 @@
   "bce": {
     "riesgo_pais_last5": [
       {
-        "fecha": "2026-01-31",
-        "valor": 439.0,
-        "medida": "Puntos Básicos"
-      },
-      {
         "fecha": "2026-02-01",
         "valor": 439.0,
         "medida": "Puntos Básicos"
@@ -44,15 +39,15 @@
       {
         "fecha": "2026-02-04",
         "valor": 441.0,
+        "medida": "Puntos Básicos"
+      },
+      {
+        "fecha": "2026-02-05",
+        "valor": 457.0,
         "medida": "Puntos básicos"
       }
     ],
     "oro_last5": [
-      {
-        "fecha": "2026-01-30",
-        "valor": 4981.85,
-        "medida": "USD / Onza Troy"
-      },
       {
         "fecha": "2026-01-31",
         "valor": 4981.85,
@@ -72,16 +67,14 @@
         "fecha": "2026-02-03",
         "valor": 4920.95,
         "medida": "USD / Onza Troy"
+      },
+      {
+        "fecha": "2026-02-04",
+        "valor": 4985.1,
+        "medida": "USD / Onza Troy"
       }
     ],
     "inflacion_last5": [
-      {
-        "fecha": "2025-08-01",
-        "mensual": 0.307229009157051,
-        "anual": 0.81263142591006,
-        "acumulada": 2.14115777133177,
-        "medida": "Porcentaje"
-      },
       {
         "fecha": "2025-09-01",
         "mensual": 0.083879583882163,
@@ -108,6 +101,13 @@
         "mensual": -0.141455257532241,
         "anual": 1.91493033295775,
         "acumulada": 1.91493033295775,
+        "medida": "Porcentaje"
+      },
+      {
+        "fecha": "2026-01-01",
+        "mensual": 0.37,
+        "anual": 2.44,
+        "acumulada": 0.37,
         "medida": "Porcentaje"
       }
     ]
