@@ -280,38 +280,11 @@ body {
    BREAKPOINTS
    ===================================================== */
 
-/* 1) Laptop / desktop chico: evitar recorte del top (porque 395+1015+395 no cabe) */
-@media (max-width: 1850px) {
-  .top-row {
-    grid-template-columns: 1fr 1fr;
-    grid-auto-rows: auto;
-  }
 
-  /* orden natural: wti | gas | res
-     queda:
-     [wti][gas]
-     [res][res]  (o viceversa según tu HTML)
-     Para forzarlo bonito sin tocar HTML, hacemos esto: */
-  .card--gas {
-    grid-column: 1 / -1;
-    height: auto;
-    min-height: var(--topH);
-  }
-}
 
-/* 2) Tablet: bottom en 2 columnas */
-@media (max-width: 1400px) {
-  .bottom-row {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  :root {
-    --valueBig: 64px;
-  }
-}
 
 /* 3) Mobile: todo en 1 columna, y el alto puede crecer */
-@media (max-width: 980px) {
+@media (max-width: 700px) {
   .app {
     max-height: none; /* en móvil permitimos scroll */
   }
