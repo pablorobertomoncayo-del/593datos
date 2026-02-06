@@ -329,3 +329,16 @@ body {
   align-items: center;
   overflow: hidden;
 }
+
+@media (max-width: 700px) {
+  .viewport {
+    align-items: flex-start;
+    overflow: auto;
+  }
+
+  .app {
+    width: 100%;
+    height: auto;
+    transform: none !important;
+  }
+}
