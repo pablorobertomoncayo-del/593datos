@@ -1,138 +1,169 @@
 <!doctype html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>593Datos / Dashboard</title>
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>593 Datos ||| Dashboard</title>
+    <!-- Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;500&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Inter -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;700;900&display=swap"
-    rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
 
-  <link rel="stylesheet" href="styles.css" />
-</head>
-
-<body>
-  <main class="app">
-    <section class="container" aria-label="Dashboard de indicadores">
-
-      <!-- FILA SUPERIOR -->
-      <div class="grid top">
-
-        <!-- Barril de petróleo -->
-        <article class="card card--wti" aria-label="Barril de petróleo">
-          <header class="card__header">
-            <div class="card__title accent-wti">Barril de petróleo</div>
-            <div class="card__subtitle">WTI</div>
-            <div class="card__meta accent-wti" id="wti-fecha">-- / -- / ----</div>
-          </header>
-          <div class="card__big" id="wti-precio">--</div>
+  <body>
+     <main class="container" aria-label="Dashboard 593Datos">
+      <!-- Top row -->
+      <section class="top-row">
+        <!-- WTI -->
+        <article class="card card--wti">
+          <div class="card-top">
+            <div class="kicker" data-color="petroleo">Barril de petróleo</div>
+            <div class="subtitle">WTI</div>
+            <div class="meta" data-color="petroleo" id="wti-fecha">—</div>
+          </div>
+          <div class="value value--big" id="wti-valor">—</div>
         </article>
 
         <!-- Gasolina -->
-        <article class="card card--gas" aria-label="Gasolina">
-          <header class="card__header card__header--center">
-            <div class="card__title accent-gas">Gasolina</div>
-            <div class="card__meta" id="gas-fecha">-- / -- / ---- - por galón</div>
-          </header>
+        <article class="card card--gas">
+          <div class="card-top">
+            <div class="kicker" data-color="petroleo">Gasolina</div>
+            <div class="subtitle">
+              <span id="gas-fecha">—</span>
+              <span class="subtitle-sep">/</span>
+              por galón
+            </div>
+          </div>
 
-          <div class="gas-grid">
+          <div class="gas-grid" role="group" aria-label="Precios de gasolina">
             <div class="gas-col">
-              <div class="gas-label">Súper</div>
-              <div class="gas-value" id="gas-super">--</div>
+              <div class="gas-label" data-color="gasolina">Súper</div>
+              <div class="value value--big" id="gas-super">—</div>
             </div>
 
             <div class="gas-divider" aria-hidden="true"></div>
 
             <div class="gas-col">
-              <div class="gas-label">Extra</div>
-              <div class="gas-value" id="gas-extra">--</div>
+              <div class="gas-label" data-color="gasolina">Extra</div>
+              <div class="value value--big" id="gas-extra">—</div>
             </div>
 
             <div class="gas-divider" aria-hidden="true"></div>
 
             <div class="gas-col">
-              <div class="gas-label">Diésel</div>
-              <div class="gas-value" id="gas-diesel">--</div>
+              <div class="gas-label" data-color="gasolina">Diésel</div>
+              <div class="value value--big" id="gas-diesel">—</div>
             </div>
           </div>
         </article>
 
-      </div>
+        <!-- Reservas -->
+        <article class="card card--res">
+          <div class="card-top">
+            <div class="kicker" data-color="reservas">Reservas petroleras</div>
+            <div class="subtitle">por millones de barriles (3P)</div>
+            <div class="meta" data-color="reservas" id="res-fecha">—</div>
+          </div>
+          <div class="value value--big" id="res-valor">—</div>
+        </article>
+      </section>
 
-      <!-- FILA INFERIOR -->
-      <div class="grid bottom">
-
+      <!-- Bottom row -->
+      <section class="bottom-row">
         <!-- Riesgo país -->
-        <article class="card card--riesgo" aria-label="Riesgo país">
-          <header class="card__header card__header--center">
-            <div class="card__title accent-riesgo">Riesgo país</div>
-            <div class="card__subtitle">Por puntos</div>
-            <div class="card__meta accent-riesgo" id="riesgo-fecha">-- / -- / ----</div>
-          </header>
+        <article class="card card--tall card--riesgo">
+          <div class="card-half">
+            <div class="kicker" data-color="riesgo">Riesgo país</div>
+            <div class="subtitle">Por puntos</div>
+            <div class="meta" data-color="riesgo" id="riesgo-fecha-last">—</div>
+            <div class="value value--big" id="riesgo-valor-last">—</div>
+          </div>
 
-          <div class="card__big" id="riesgo-valor">--</div>
+          <div class="separator" data-color="riesgo"></div>
 
-          <div class="rule rule--riesgo" aria-hidden="true"></div>
-
-          <!-- LISTA -->
-          <ul class="mini-list" id="riesgo-list"></ul>
+          <div class="list" id="riesgo-list" aria-label="Últimos 5 registros de riesgo país">
+            <!-- rows injected -->
+          </div>
         </article>
 
-        <!-- Precio del oro -->
-        <article class="card card--oro" aria-label="Precio del oro">
-          <header class="card__header card__header--center">
-            <div class="card__title accent-oro">Precio del oro</div>
-            <div class="card__subtitle">Por onza troy</div>
-            <div class="card__meta accent-oro" id="oro-fecha">-- / -- / ----</div>
-          </header>
+        <!-- Oro -->
+        <article class="card card--tall card--oro">
+          <div class="card-half">
+            <div class="kicker" data-color="oro">Precio del oro</div>
+            <div class="subtitle">Por onza troy / en dólares</div>
+            <div class="meta" data-color="oro" id="oro-fecha-last">—</div>
+            <div class="value value--big" id="oro-valor-last">—</div>
+          </div>
 
-          <div class="card__big" id="oro-valor">--</div>
+          <div class="separator" data-color="oro"></div>
 
-          <div class="rule rule--oro" aria-hidden="true"></div>
-
-          <!-- LISTA -->
-          <ul class="mini-list" id="oro-list"></ul>
+          <div class="list" id="oro-list" aria-label="Últimos 5 registros de oro">
+            <!-- rows injected -->
+          </div>
         </article>
 
-        <!-- Inflación mensual -->
-        <article class="card card--inflacion" aria-label="Inflación mensual">
-          <header class="card__header card__header--center">
-            <div class="card__title accent-inf">Inflación mensual</div>
-            <div class="card__subtitle">Variación porcentual</div>
-            <div class="card__meta accent-inf" id="inf-fecha">--/----</div>
-          </header>
+        <!-- Inflación -->
+        <article class="card card--tall card--infl">
+          <div class="card-half">
+            <div class="kicker" data-color="inflacion">Inflación mensual</div>
+            <div class="subtitle">Variación porcentual</div>
+            <div class="meta" data-color="inflacion" id="infl-fecha-last">—</div>
+            <div class="value value--big" id="infl-valor-last">—</div>
+          </div>
 
-          <div class="card__big" id="inf-valor">--</div>
+          <div class="separator" data-color="inflacion"></div>
 
-          <div class="rule rule--inf" aria-hidden="true"></div>
-
-          <!-- LISTA -->
-          <ul class="mini-list" id="inf-list"></ul>
+          <div class="list" id="infl-list" aria-label="Últimos 5 registros de inflación mensual">
+            <!-- rows injected -->
+          </div>
         </article>
 
-      </div>
-    </section>
+        <!-- Right column with 2 rows -->
+        <div class="right-stack">
+          <!-- Banano -->
+          <article class="card card--short card--banano">
+            <div class="card-top">
+              <div class="kicker" data-color="banano">Precio del banano</div>
+              <div class="subtitle">Por caja</div>
+              <div class="meta" data-color="banano" id="ban-fecha">—</div>
+            </div>
+            <div class="value value--big" id="ban-valor">—</div>
+          </article>
+
+          <!-- Cacao -->
+          <article class="card card--short card--cacao">
+            <div class="card-top">
+              <div class="kicker" data-color="banano">Precio del cacao</div>
+              <div class="subtitle">Por tonelada métrica</div>
+              <div class="meta" data-color="cacao" id="cacao-fecha">—</div>
+            </div>
+            <div class="value value--big" id="cacao-valor">—</div>
+          </article>
+        </div>
+      </section>
+    </main>
+
     <footer class="footer">
-    <a href="https://www.instagram.com/593datos/" target="_blank" rel="noopener" aria-label="Instagram 593datos">
-      <i data-lucide="instagram"></i>
-    </a>
-  </footer>
-  </main>
+      <a
+        class="ig"
+        href="https://www.instagram.com/593datos/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Instagram 593datos"
+        title="Instagram 593datos"
+      >
+        <i data-lucide="instagram"></i>
+      </a>
+    </footer>
 
-  
-
-  <!-- Lucide -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <script>
-    lucide.createIcons();
-  </script>
-
-
-  <script src="script.js" defer></script>
-</body>
-
+    <!-- lucide icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="./script.js" defer></script>
+  </body>
 </html>
