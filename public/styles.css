@@ -18,6 +18,7 @@
   --pad: 20px;
   --gap: 20px;
 
+  /* tamaños Figma */
   --wtiW: 395px;
   --gasW: 1015px;
   --resW: 395px;
@@ -46,51 +47,49 @@ body {
   margin: 0;
   background: var(--bkg);
   color: var(--white);
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   font-weight: 300;
 
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  justify-content: center;   /* centrado horizontal */
+  align-items: flex-start;   /* NO centrado vertical (clave para laptop/móvil) */
 
-  text-align: center;
   overflow-x: hidden;
+  text-align: center;
 }
 
-/* ---------- HEADER ---------- */
+/* WRAPPER QUE LIMITA TAMAÑO TOTAL */
+.app {
+  width: 100%;
+  max-width: 1885px;
 
-.header {
-  width: min(1885px, calc(100% - 40px));
-  margin-bottom: 12px;
-}
-
-/* ---------- CONTAINER ---------- */
-
-.container {
-  width: min(1885px, calc(100% - 40px));
+  /* En desktop/laptop NO puede pasar de 823px */
   max-height: 823px;
+
   padding: var(--pad);
   display: flex;
   flex-direction: column;
   gap: var(--gap);
 }
 
-/* ---------- TOP ROW ---------- */
+/* CONTENEDOR PRINCIPAL */
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  flex: 1 1 auto;
+  min-height: 0; /* importante para que el contenido se comporte bien con max-height */
+}
 
+/* ---------- TOP ROW ---------- */
 .top-row {
   display: grid;
-  grid-template-areas: "wti gas res";
   grid-template-columns: var(--wtiW) var(--gasW) var(--resW);
   gap: var(--gap);
 }
 
-.card--wti { grid-area: wti; }
-.card--gas { grid-area: gas; }
-.card--res { grid-area: res; }
-
 /* ---------- BOTTOM ROW ---------- */
-
 .bottom-row {
   display: grid;
   grid-template-columns: repeat(4, var(--colW));
@@ -104,14 +103,15 @@ body {
 }
 
 /* ---------- CARDS ---------- */
-
 .card {
   background: var(--box);
   border-radius: var(--radius);
   padding: var(--pad);
+
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-width: 0;
 }
 
 .card--wti,
@@ -129,26 +129,36 @@ body {
 }
 
 /* ---------- TEXT ---------- */
-
 .card-top {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .kicker {
   font-size: var(--titleSize);
+  font-weight: 300;
+  line-height: 1.1;
   margin-bottom: 6px;
 }
 
 .subtitle {
   font-size: var(--subSize);
   font-weight: 500;
+  line-height: 1.2;
   margin-bottom: 6px;
+}
+
+.subtitle-sep {
+  opacity: 0.7;
+  margin: 0 6px;
 }
 
 .meta {
   font-size: var(--subSize);
+  font-weight: 300;
+  line-height: 1.2;
   margin-bottom: 10px;
 }
 
@@ -159,25 +169,35 @@ body {
 }
 
 /* ---------- GASOLINA ---------- */
-
 .gas-grid {
+  margin-top: 6px;
   display: grid;
   grid-template-columns: 1fr 1px 1fr 1px 1fr;
   align-items: center;
+  height: 100%;
 }
 
 .gas-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding: 0 6px;
+}
+
+.gas-label {
+  font-size: var(--subSize);
+  font-weight: 500;
+  margin-bottom: 8px;
 }
 
 .gas-divider {
   width: 1px;
   height: 140px;
   background: rgba(255, 255, 255, 0.35);
+  border-radius: 1px;
 }
 
-/* ---------- LISTAS ---------- */
-
+/* ---------- TALL LIST CARDS ---------- */
 .card-half {
   height: 224px;
   display: flex;
@@ -187,18 +207,40 @@ body {
 
 .separator {
   border-top: 1px solid transparent;
-  margin: 10px 0;
+  margin: 6px 0 10px;
 }
 
-.list .row {
+.list {
   display: flex;
+  flex-direction: column;
+  padding-top: 4px;
+  min-height: 0;
+}
+
+.row {
+  display: flex;
+  align-items: center;
   justify-content: space-between;
   padding: 8px 6px;
-  border-top: 1px solid rgba(255,255,255,.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* ---------- COLORES ---------- */
+.row:first-child {
+  border-top: 0;
+}
 
+.row-date {
+  font-size: var(--subSize);
+  font-weight: 100;
+  opacity: 0.95;
+}
+
+.row-val {
+  font-size: var(--subSize);
+  font-weight: 300;
+}
+
+/* ---------- COLORS ---------- */
 [data-color="petroleo"] { color: var(--petroleo); }
 [data-color="gasolina"] { color: var(--gasolina); }
 [data-color="reservas"] { color: var(--reservas); }
@@ -208,13 +250,25 @@ body {
 [data-color="banano"] { color: var(--banano); }
 [data-color="cacao"] { color: var(--cacao); }
 
-/* ---------- FOOTER ---------- */
+.separator[data-color="riesgo"] { border-top-color: var(--riesgo); }
+.separator[data-color="oro"] { border-top-color: var(--oro); }
+.separator[data-color="inflacion"] { border-top-color: var(--inflacion); }
 
+/* ---------- FOOTER (instagram) ---------- */
 .footer {
-  width: min(1845px, calc(100% - 40px));
+  width: 100%;
+  height: 24px;
   display: flex;
+  align-items: center;
   justify-content: center;
-  margin-top: 12px;
+}
+
+.ig {
+  color: var(--white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
 }
 
 .ig svg {
@@ -223,41 +277,46 @@ body {
 }
 
 /* =====================================================
-   BREAKPOINTS IMPORTANTES
+   BREAKPOINTS
    ===================================================== */
 
-/* LAPTOP / DESKTOP CHICO */
+/* 1) Laptop / desktop chico: evitar recorte del top (porque 395+1015+395 no cabe) */
 @media (max-width: 1850px) {
   .top-row {
-    grid-template-areas:
-      "gas gas"
-      "wti res";
     grid-template-columns: 1fr 1fr;
+    grid-auto-rows: auto;
   }
 
+  /* orden natural: wti | gas | res
+     queda:
+     [wti][gas]
+     [res][res]  (o viceversa según tu HTML)
+     Para forzarlo bonito sin tocar HTML, hacemos esto: */
   .card--gas {
+    grid-column: 1 / -1;
     height: auto;
     min-height: var(--topH);
   }
 }
 
-/* MOBILE */
-@media (max-width: 980px) {
-  body {
-    justify-content: flex-start;
-    min-height: 100vh;
+/* 2) Tablet: bottom en 2 columnas */
+@media (max-width: 1400px) {
+  .bottom-row {
+    grid-template-columns: 1fr 1fr;
   }
 
-  .container {
-    max-height: none;
-    flex: 1 0 auto;
+  :root {
+    --valueBig: 64px;
+  }
+}
+
+/* 3) Mobile: todo en 1 columna, y el alto puede crecer */
+@media (max-width: 980px) {
+  .app {
+    max-height: none; /* en móvil permitimos scroll */
   }
 
   .top-row {
-    grid-template-areas:
-      "wti"
-      "gas"
-      "res";
     grid-template-columns: 1fr;
   }
 
@@ -269,18 +328,23 @@ body {
     grid-template-rows: auto;
   }
 
+  .card--wti,
+  .card--gas,
+  .card--res,
   .card--tall,
   .card--short {
     height: auto;
+    min-height: 0;
   }
 
-  /* gasolina valores más chicos */
+  /* gasolina: valores más chicos para que no se peguen */
   .card--gas .value--big {
     font-size: 56px;
+    letter-spacing: -0.5px;
   }
 
   .footer {
-    margin-top: auto;
-    padding: 16px 0;
+    margin-top: 12px;
+    padding-bottom: 16px;
   }
 }
