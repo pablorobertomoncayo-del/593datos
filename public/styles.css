@@ -49,11 +49,9 @@ body {
   color: var(--white);
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   font-weight: 300;
-
   display: flex;
   justify-content: center;   /* centrado horizontal */
-  align-items: flex-start;   /* NO centrado vertical (clave para laptop/móvil) */
-
+  align-items: center;   /* NO centrado vertical (clave para laptop/móvil) */
   overflow-x: hidden;
   text-align: center;
 }
@@ -62,7 +60,7 @@ body {
 .app {
   width: 100%;
   max-width: 1885px;
-
+  
   /* En desktop/laptop NO puede pasar de 823px */
   max-height: 823px;
 
@@ -276,13 +274,6 @@ body {
   height: 22px;
 }
 
-/* =====================================================
-   BREAKPOINTS
-   ===================================================== */
-
-
-
-
 /* 3) Mobile: todo en 1 columna, y el alto puede crecer */
 @media (max-width: 700px) {
   .app {
@@ -320,4 +311,21 @@ body {
     margin-top: 12px;
     padding-bottom: 16px;
   }
+}
+
+/* El "canvas" fijo del diseño */
+.app {
+  width: 1885px;
+  height: 823px;
+  transform-origin: top center;
+}
+
+/* El contenedor que decide el scale */
+.viewport {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
