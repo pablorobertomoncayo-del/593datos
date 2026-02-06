@@ -1,228 +1,387 @@
-:root{
-  --bg: #000000;
-  --card: #36372F;
+:root {
+  --bkg: #000000;
+  --white: #ffffff;
 
-  --white: #FFFFFF;
+  /* variables de color */
+  --petroleo: #00c8b3;
+  --gasolina: #ff869d;
+  --reservas: #f87deb;
+  --riesgo: #65d567;
+  --oro: #ff8c42;
+  --inflacion: #9fd2ff;
+  --banano: #eab17f;
+  --cacao: #d0976d;
 
-  --wti: #00C8B3;
-  --gas: #FF869D;
-  --riesgo: #65D567;
-  --oro: #FF8C42;
-  --inf: #9FD2FF;
+  --box: #36372f;
 
-  --radius: 20px;
+  --radius: 30px;
+  --pad: 20px;
   --gap: 20px;
 
-  --shadow: 0 20px 40px rgba(0,0,0,.45);
+  --wtiW: 395px;
+  --gasW: 1015px;
+  --resW: 395px;
+
+  --topH: 230px;
+
+  --colW: 446px;
+  --tallH: 489px;
+  --shortH: 234px;
+
+  --titleSize: 25px;
+  --subSize: 20px;
+  --valueBig: 75px;
 }
 
-*{ box-sizing: border-box; }
-html, body{ height: 100%; }
+* {
+  box-sizing: border-box;
+}
 
-body{
+html,
+body {
+  height: 100%;
+}
+
+body {
   margin: 0;
-  background: var(--bg);
+  background: var(--bkg);
   color: var(--white);
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  font-size: 20px;
-  text-align: center; /* ✅ tu “centrado global” */
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 300;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
 }
 
-.app{
-  min-height: 100vh;
-  display: grid;
-  place-items: center; /* centra todo vertical/horizontal */
-  padding: 20px;
+/* header */
+.header {
+  width: min(1885px, calc(100% - 40px));
+  margin-bottom: 12px;
 }
 
-.container{
-  width: 100%;
-  max-width: 1885px;
-  padding: 20px;
-  display: grid;
-  gap: var(--gap);
-}
-
-/* Grids */
-.grid{
-  display: grid;
-  gap: var(--gap);
-}
-
-.grid.top{
-  grid-template-columns: 395px 1fr;
-  align-items: stretch;
-}
-
-.grid.bottom{
-  grid-template-columns: repeat(3, 1fr);
-  align-items: stretch;
-}
-
-/* Cards */
-.card{
-  background: var(--card);
-  border-radius: var(--radius);
-  padding: 20px;
-  box-shadow: var(--shadow);
-  display: grid;
-  align-content: start;
-  overflow: hidden;
-}
-
-.card__header{
-  display: grid;
-  gap: 6px;
-}
-
-.card__header--center{
-  justify-items: center;
-}
-
-.card__title{
-  font-weight: 400;
-  font-size: 25px;
-  line-height: 1.1;
-}
-
-.card__subtitle{
+.app-title {
+  margin: 0;
   font-weight: 300;
   font-size: 20px;
+  letter-spacing: 0.2px;
+  opacity: 0.95;
 }
 
-.card__meta{
-  font-weight: 400;
-  font-size: 20px;
-  opacity: .95;
-}
-
-.card__big{
-  font-weight: 100;
-  font-size: 90px;
-  line-height: 1.0;
-  margin-top: 14px;
-  letter-spacing: -0.03em;
-}
-
-/* Accent helpers */
-.accent-wti{ color: var(--wti); }
-.accent-gas{ color: var(--gas); }
-.accent-riesgo{ color: var(--riesgo); }
-.accent-oro{ color: var(--oro); }
-.accent-inf{ color: var(--inf); }
-
-/* Gasolina */
-.gas-grid{
-  margin-top: 22px;
-  display: grid;
-  grid-template-columns: 1fr 1px 1fr 1px 1fr;
-  align-items: center;
-  gap: 18px;
-}
-
-.gas-col{
-  display: grid;
-  justify-items: center;
-  gap: 10px;
-}
-
-.gas-label{
-  font-weight: 400;
-  font-size: 20px;
-  color: var(--gas);
-}
-
-.gas-value{
-  font-weight: 100;
-  font-size: 90px;
-  line-height: 1;
-}
-
-.gas-divider{
-  width: 1px;
-  height: 120px;
-  background: rgba(255,255,255,.35);
-}
-
-/* Separadores inferiores */
-.rule{
-  width: 100%;
-  height: 1px;
-  margin: 16px 0 10px;
-  opacity: .95;
-}
-
-.rule--riesgo{ background: var(--riesgo); }
-.rule--oro{ background: var(--oro); }
-.rule--inf{ background: var(--inf); }
-
-/* LISTAS (reemplazo de gráficos) */
-.mini-list{
-  list-style: none;
-  padding: 0;
-  margin: 10px 0 0;
-  display: grid;
-  gap: 10px;
-
-}
-
-.mini-item{
+/* main container */
+.container {
+  width: min(1885px, calc(100% - 40px));
+  max-height: 823px;
+  padding: var(--pad);
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
-  padding: 6px 4px;
-  border-bottom: 1px solid rgba(255,255,255,.12);
-  font-size: 18px;
+  flex-direction: column;
+  gap: var(--gap);
 }
 
-.mini-item .v{
-  font-weight: 400;
+.top-row {
+  display: grid;
+  grid-template-columns: var(--wtiW) var(--gasW) var(--resW);
+  gap: var(--gap);
 }
 
-.footer{
+.bottom-row {
+  display: grid;
+  grid-template-columns: var(--colW) var(--colW) var(--colW) var(--colW);
+  gap: var(--gap);
+}
+
+.right-stack {
+  display: grid;
+  grid-template-rows: var(--shortH) var(--shortH);
+  gap: var(--gap);
+}
+
+.card {
+  background: var(--box);
+  border-radius: var(--radius);
+  padding: var(--pad);
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0px;
+  min-width: 0;
+}
+
+.card--wti,
+.card--gas,
+.card--res {
+  height: var(--topH);
+}
+
+.card--tall {
+  height: var(--tallH);
+}
+
+.card--short {
+  height: var(--shortH);
+}
+
+.card-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
 
-.footer a{
-  color: #ffffff;
-  transition: color .25s ease;
+.kicker {
+  font-size: var(--titleSize);
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 6px;
 }
 
-.footer svg{
-  width: 28px;
-  height: 28px;
+.subtitle {
+  font-size: var(--subSize);
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 6px;
 }
 
+.subtitle-sep {
+  opacity: 0.7;
+  margin: 0 6px;
+}
 
+.meta {
+  font-size: var(--subSize);
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
 
-/* color por card */
-.card--riesgo .mini-item .v{ color: var(--riesgo); }
-.card--oro .mini-item .v{ color: var(--oro); }
-.card--inflacion .mini-item .v{ color: var(--inf); }
+.value {
+  line-height: 1;
+}
 
-/* Responsive */
-@media (max-width: 980px){
-  .grid.top{
+.value--big {
+  font-size: var(--valueBig);
+  font-weight: 100;
+}
+
+/* gasolina layout */
+.gas-grid {
+  margin-top: 6px;
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr 1px 1fr;
+  align-items: center;
+  height: 100%;
+}
+
+.gas-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.gas-label {
+  font-size: var(--subSize);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.gas-divider {
+  width: 1px;
+  height: 140px;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 1px;
+}
+
+/* tall cards with list */
+.card-half {
+  height: 224px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.separator {
+  border-top: 1px solid transparent;
+  margin: 6px 0 10px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-top: 4px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.row:first-child {
+  border-top: 0;
+}
+
+.row-date {
+  font-size: var(--subSize);
+  font-weight: 100;
+  color: var(--white);
+  opacity: 0.95;
+}
+
+.row-val {
+  font-size: var(--subSize);
+  font-weight: 300;
+}
+
+/* color mapping by data-color attr */
+[data-color="petroleo"] {
+  color: var(--petroleo);
+}
+[data-color="gasolina"] {
+  color: var(--gasolina);
+}
+[data-color="reservas"] {
+  color: var(--reservas);
+}
+[data-color="riesgo"] {
+  color: var(--riesgo);
+}
+[data-color="oro"] {
+  color: var(--oro);
+}
+[data-color="inflacion"] {
+  color: var(--inflacion);
+}
+[data-color="banano"] {
+  color: var(--banano);
+}
+[data-color="cacao"] {
+  color: var(--cacao);
+}
+
+.separator[data-color="riesgo"] {
+  border-top-color: var(--riesgo);
+}
+.separator[data-color="oro"] {
+  border-top-color: var(--oro);
+}
+.separator[data-color="inflacion"] {
+  border-top-color: var(--inflacion);
+}
+
+.row-val[data-color="riesgo"] {
+  color: var(--riesgo);
+}
+.row-val[data-color="oro"] {
+  color: var(--oro);
+}
+.row-val[data-color="inflacion"] {
+  color: var(--inflacion);
+}
+
+/* footer */
+.footer {
+  width: min(1845px, calc(100% - 40px));
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.ig {
+  color: var(--white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: color 220ms ease;
+}
+
+.ig svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* responsive: escala a pantallas más chicas sin romper la proporción */
+@media (max-width: 1920px) {
+  .top-row {
+    grid-template-columns: minmax(280px, var(--wtiW)) minmax(520px, var(--gasW)) minmax(280px, var(--resW));
+  }
+}
+
+@media (max-width: 1400px) {
+  :root {
+    --valueBig: 64px;
+  }
+
+  .bottom-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .right-stack {
+    grid-template-rows: var(--shortH) var(--shortH);
+  }
+}
+
+@media (max-width: 980px) {
+  .top-row {
     grid-template-columns: 1fr;
   }
 
-  .grid.bottom{
+  .card--wti,
+  .card--gas,
+  .card--res {
+    height: auto;
+    min-height: var(--topH);
+  }
+
+  .bottom-row {
     grid-template-columns: 1fr;
   }
 
-  .card__big,
-  .gas-value{
-    font-size: 72px;
+  .card--tall {
+    height: auto;
+    min-height: var(--tallH);
   }
 
-  .gas-grid{
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-
-  .gas-divider{
-    display: none;
+  .right-stack {
+    grid-template-rows: auto;
   }
 }
+
+/* Ajuste responsive SOLO para valores de gasolina */
+@media (max-width: 980px) {
+  .card--gas .value--big {
+    font-size: 40px;      /* antes 75px */
+    letter-spacing: -0.5px;
+  }
+
+  .gas-col {
+    padding: 0 6px;       /* separa visualmente columnas */
+  }
+}
+
+@media (max-width: 980px) {
+  body {
+    min-height: 100vh;
+    justify-content: flex-start; /* ya lo habíamos tocado */
+  }
+
+  .container {
+    max-height: none;     /* 🔥 clave: dejar que el dashboard crezca */
+    flex: 1 0 auto;       /* ocupa el espacio disponible */
+  }
+
+  .footer {
+    margin-top: auto;     /* empuja el footer hacia abajo */
+    padding: 16px 0;      /* aire en mobile */
+  }
+}
+
+
