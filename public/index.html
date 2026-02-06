@@ -11,150 +11,152 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;500&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="./styles2.css" />
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 
 <body>
-  <div class="app">
-    <main class="container" aria-label="Dashboard 593Datos">
-      <!-- Top row -->
-      <section class="top-row">
-        <!-- WTI -->
-        <article class="card card--wti">
-          <div class="card-top">
-            <div class="kicker" data-color="petroleo">Barril de petróleo</div>
-            <div class="subtitle">WTI</div>
-            <div class="meta" data-color="petroleo" id="wti-fecha">—</div>
-          </div>
-          <div class="value value--big" id="wti-valor">—</div>
-        </article>
-
-        <!-- Gasolina -->
-        <article class="card card--gas">
-          <div class="card-top">
-            <div class="kicker" data-color="petroleo">Gasolina</div>
-            <div class="subtitle">
-              <span id="gas-fecha">—</span>
-              <span class="subtitle-sep">/</span>
-              por galón
-            </div>
-          </div>
-
-          <div class="gas-grid" role="group" aria-label="Precios de gasolina">
-            <div class="gas-col">
-              <div class="gas-label" data-color="gasolina">Súper</div>
-              <div class="value value--big" id="gas-super">—</div>
-            </div>
-
-            <div class="gas-divider" aria-hidden="true"></div>
-
-            <div class="gas-col">
-              <div class="gas-label" data-color="gasolina">Extra</div>
-              <div class="value value--big" id="gas-extra">—</div>
-            </div>
-
-            <div class="gas-divider" aria-hidden="true"></div>
-
-            <div class="gas-col">
-              <div class="gas-label" data-color="gasolina">Diésel</div>
-              <div class="value value--big" id="gas-diesel">—</div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Reservas -->
-        <article class="card card--res">
-          <div class="card-top">
-            <div class="kicker" data-color="reservas">Reservas petroleras</div>
-            <div class="subtitle">por millones de barriles (3P)</div>
-            <div class="meta" data-color="reservas" id="res-fecha">—</div>
-          </div>
-          <div class="value value--big" id="res-valor">—</div>
-        </article>
-      </section>
-
-      <!-- Bottom row -->
-      <section class="bottom-row">
-        <!-- Riesgo país -->
-        <article class="card card--tall card--riesgo">
-          <div class="card-half">
-            <div class="kicker" data-color="riesgo">Riesgo país</div>
-            <div class="subtitle">Por puntos</div>
-            <div class="meta" data-color="riesgo" id="riesgo-fecha-last">—</div>
-            <div class="value value--big" id="riesgo-valor-last">—</div>
-          </div>
-
-          <div class="separator" data-color="riesgo"></div>
-
-          <div class="list" id="riesgo-list" aria-label="Últimos 5 registros de riesgo país">
-            <!-- rows injected -->
-          </div>
-        </article>
-
-        <!-- Oro -->
-        <article class="card card--tall card--oro">
-          <div class="card-half">
-            <div class="kicker" data-color="oro">Precio del oro</div>
-            <div class="subtitle">Por onza troy / en dólares</div>
-            <div class="meta" data-color="oro" id="oro-fecha-last">—</div>
-            <div class="value value--big" id="oro-valor-last">—</div>
-          </div>
-
-          <div class="separator" data-color="oro"></div>
-
-          <div class="list" id="oro-list" aria-label="Últimos 5 registros de oro">
-            <!-- rows injected -->
-          </div>
-        </article>
-
-        <!-- Inflación -->
-        <article class="card card--tall card--infl">
-          <div class="card-half">
-            <div class="kicker" data-color="inflacion">Inflación mensual</div>
-            <div class="subtitle">Variación porcentual</div>
-            <div class="meta" data-color="inflacion" id="infl-fecha-last">—</div>
-            <div class="value value--big" id="infl-valor-last">—</div>
-          </div>
-
-          <div class="separator" data-color="inflacion"></div>
-
-          <div class="list" id="infl-list" aria-label="Últimos 5 registros de inflación mensual">
-            <!-- rows injected -->
-          </div>
-        </article>
-
-        <!-- Right column with 2 rows -->
-        <div class="right-stack">
-          <!-- Banano -->
-          <article class="card card--short card--banano">
+  <div class="viewport">
+    <div class="app">
+      <main class="container" aria-label="Dashboard 593Datos">
+        <!-- Top row -->
+        <section class="top-row">
+          <!-- WTI -->
+          <article class="card card--wti">
             <div class="card-top">
-              <div class="kicker" data-color="banano">Precio del banano</div>
-              <div class="subtitle">Por caja</div>
-              <div class="meta" data-color="banano" id="ban-fecha">—</div>
+              <div class="kicker" data-color="petroleo">Barril de petróleo</div>
+              <div class="subtitle">WTI</div>
+              <div class="meta" data-color="petroleo" id="wti-fecha">—</div>
             </div>
-            <div class="value value--big" id="ban-valor">—</div>
+            <div class="value value--big" id="wti-valor">—</div>
           </article>
 
-          <!-- Cacao -->
-          <article class="card card--short card--cacao">
+          <!-- Gasolina -->
+          <article class="card card--gas">
             <div class="card-top">
-              <div class="kicker" data-color="banano">Precio del cacao</div>
-              <div class="subtitle">Por tonelada métrica</div>
-              <div class="meta" data-color="cacao" id="cacao-fecha">—</div>
+              <div class="kicker" data-color="petroleo">Gasolina</div>
+              <div class="subtitle">
+                <span id="gas-fecha">—</span>
+                <span class="subtitle-sep">/</span>
+                por galón
+              </div>
             </div>
-            <div class="value value--big" id="cacao-valor">—</div>
+
+            <div class="gas-grid" role="group" aria-label="Precios de gasolina">
+              <div class="gas-col">
+                <div class="gas-label" data-color="gasolina">Súper</div>
+                <div class="value value--big" id="gas-super">—</div>
+              </div>
+
+              <div class="gas-divider" aria-hidden="true"></div>
+
+              <div class="gas-col">
+                <div class="gas-label" data-color="gasolina">Extra</div>
+                <div class="value value--big" id="gas-extra">—</div>
+              </div>
+
+              <div class="gas-divider" aria-hidden="true"></div>
+
+              <div class="gas-col">
+                <div class="gas-label" data-color="gasolina">Diésel</div>
+                <div class="value value--big" id="gas-diesel">—</div>
+              </div>
+            </div>
           </article>
-        </div>
-      </section>
-    </main>
 
-    <footer class="footer">
-      <a class="ig" href="https://www.instagram.com/593datos/" target="_blank" rel="noopener noreferrer"
-        aria-label="Instagram 593datos" title="Instagram 593datos">
-        <i data-lucide="instagram"></i>
-      </a>
-    </footer>
+          <!-- Reservas -->
+          <article class="card card--res">
+            <div class="card-top">
+              <div class="kicker" data-color="reservas">Reservas petroleras</div>
+              <div class="subtitle">por millones de barriles (3P)</div>
+              <div class="meta" data-color="reservas" id="res-fecha">—</div>
+            </div>
+            <div class="value value--big" id="res-valor">—</div>
+          </article>
+        </section>
 
+        <!-- Bottom row -->
+        <section class="bottom-row">
+          <!-- Riesgo país -->
+          <article class="card card--tall card--riesgo">
+            <div class="card-half">
+              <div class="kicker" data-color="riesgo">Riesgo país</div>
+              <div class="subtitle">Por puntos</div>
+              <div class="meta" data-color="riesgo" id="riesgo-fecha-last">—</div>
+              <div class="value value--big" id="riesgo-valor-last">—</div>
+            </div>
+
+            <div class="separator" data-color="riesgo"></div>
+
+            <div class="list" id="riesgo-list" aria-label="Últimos 5 registros de riesgo país">
+              <!-- rows injected -->
+            </div>
+          </article>
+
+          <!-- Oro -->
+          <article class="card card--tall card--oro">
+            <div class="card-half">
+              <div class="kicker" data-color="oro">Precio del oro</div>
+              <div class="subtitle">Por onza troy / en dólares</div>
+              <div class="meta" data-color="oro" id="oro-fecha-last">—</div>
+              <div class="value value--big" id="oro-valor-last">—</div>
+            </div>
+
+            <div class="separator" data-color="oro"></div>
+
+            <div class="list" id="oro-list" aria-label="Últimos 5 registros de oro">
+              <!-- rows injected -->
+            </div>
+          </article>
+
+          <!-- Inflación -->
+          <article class="card card--tall card--infl">
+            <div class="card-half">
+              <div class="kicker" data-color="inflacion">Inflación mensual</div>
+              <div class="subtitle">Variación porcentual</div>
+              <div class="meta" data-color="inflacion" id="infl-fecha-last">—</div>
+              <div class="value value--big" id="infl-valor-last">—</div>
+            </div>
+
+            <div class="separator" data-color="inflacion"></div>
+
+            <div class="list" id="infl-list" aria-label="Últimos 5 registros de inflación mensual">
+              <!-- rows injected -->
+            </div>
+          </article>
+
+          <!-- Right column with 2 rows -->
+          <div class="right-stack">
+            <!-- Banano -->
+            <article class="card card--short card--banano">
+              <div class="card-top">
+                <div class="kicker" data-color="banano">Precio del banano</div>
+                <div class="subtitle">Por caja</div>
+                <div class="meta" data-color="banano" id="ban-fecha">—</div>
+              </div>
+              <div class="value value--big" id="ban-valor">—</div>
+            </article>
+
+            <!-- Cacao -->
+            <article class="card card--short card--cacao">
+              <div class="card-top">
+                <div class="kicker" data-color="banano">Precio del cacao</div>
+                <div class="subtitle">Por tonelada métrica</div>
+                <div class="meta" data-color="cacao" id="cacao-fecha">—</div>
+              </div>
+              <div class="value value--big" id="cacao-valor">—</div>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <a class="ig" href="https://www.instagram.com/593datos/" target="_blank" rel="noopener noreferrer"
+          aria-label="Instagram 593datos" title="Instagram 593datos">
+          <i data-lucide="instagram"></i>
+        </a>
+      </footer>
+
+    </div>
   </div>
   <!-- lucide icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -162,4 +164,3 @@
 </body>
 
 </html>
-
