@@ -171,3 +171,18 @@ load().catch((err) => {
   const title = document.querySelector(".app-title");
   if (title) title.textContent = "593Datos / Dashboard (Error cargando JSON)";
 });
+
+function fitDashboard() {
+  const app = document.querySelector(".app");
+  if (!app) return;
+
+  const baseW = 1885;
+  const baseH = 823;
+
+  const scale = Math.min(window.innerWidth / baseW, window.innerHeight / baseH);
+
+  app.style.transform = `scale(${Math.min(scale, 1)})`; // nunca agrandar > 1
+}
+
+window.addEventListener("resize", fitDashboard);
+window.addEventListener("load", fitDashboard);
